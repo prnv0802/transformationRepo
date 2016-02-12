@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:camel="http://camel.apache.org/schema/spring"
+	xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+	<context:property-placeholder location="classpath:transform.properties" />
+	
+	<bean id="preProcessor" class="com.covisint.demo.processor.PreProcessor" />
+	<bean id="parseProcessor" class="com.covisint.demo.processor.ParseProcessor" />
+	<bean id="validateProcessor" class="com.covisint.demo.processor.ValidateProcessor" />
+	<bean id="mappingProcessor" class="com.covisint.demo.processor.MappingProcessor" />
+	<bean id="mapDatahubMsg" class="com.covisint.demo.processor.MappingDatahubProcess" />
+	<bean id="postProcessor" class="com.covisint.demo.processor.PostProcessor" />
+
+	<camel:camelContext xmlns="http://camel.apache.org/schema/spring">
+		<camel:endpoint id="inputFile" uri="file:${src_data_dir}?noop=${preserve_src_file}" />
+		<camel:route id="tran_route">
+		
+			<!-- Read from input file -->
+			<camel:from uri="ref:inputFile"/>
+			
+				<!-- Check for any ValueAdd and if there is any encoded
+					 value for deviceId, decode it to valid value. -->
+				<camel:bean ref="preProcessor" method="readData"/>
+				
+				<!-- Parse each CSV record and create XML -->
+				<camel:bean ref="parseProcessor" method="parseToXML"/>
+				
+				<!-- Validate XML against given XSD -->
+				<camel:bean ref="validateProcessor" method="validate"/>
+				
+				<!-- Convert XML to RawMessage Object -->
+				<camel:bean ref="mappingProcessor" method="convertToRawMessage"/>
+				
+				<!-- Convert RawMessage to Datahub message. Make http call
+					to Device service and get eventTemplateId, commandTemplateId and other properties. -->
+				<camel:bean ref="mapDatahubMsg" method="mapToDatahub"/>
+				
+			<!-- Send to kafka topic TEST -->
+			<camel:to uri="bean:postProcessor" />
+		</camel:route>
+	</camel:camelContext>
+
+</beans>
