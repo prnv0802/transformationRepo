@@ -1,7 +1,11 @@
 package com.covisint.transform.route;
 
+import org.springframework.data.annotation.Id;
+
 public class RouteDef {
 	
+	@Id
+	private String id;
 	private String realm;	
 	private String payload;
 	private String refName;
@@ -12,6 +16,16 @@ public class RouteDef {
 	private String postProcessorRefName;
 	
 	private String runtimeArgs;
+	
+	
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getRealm() {
 		return realm;

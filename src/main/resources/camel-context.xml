@@ -2,15 +2,26 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:camel="http://camel.apache.org/schema/spring"
+	xmlns:camel="http://camel.apache.org/schema/spring" xmlns:mongo="http://www.springframework.org/schema/data/mongo"
 	xsi:schemaLocation="
          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
          http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+         http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.5.xsd">
 
 	<context:property-placeholder location="classpath:transform.properties" />
 	
+	
+	<mongo:mongo host="localhost" port="27017" id="mongo" />
+	<mongo:db-factory dbname="transformationdb" mongo-ref="mongo"
+		id="mongoDbFactory" />
+
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
+	</bean>
+
+
 	<bean id="preProcessor" class="com.covisint.transform.services.PreProcessor" />
 	<bean id="parseProcessor" class="com.covisint.transform.services.ParseProcessor" />
 	<bean id="validateProcessor" class="com.covisint.transform.services.ValidateProcessor" />

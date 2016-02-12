@@ -1,0 +1,11 @@
+[{
+"realm" : "TestRealm",
+"payload" : "Some Message",
+"refName" : "testRouteDef",
+"preProcessorRefName" : "testPreProcessorRefName",
+"parserRefName" : "testParserRefName",
+"mapperRefName" : "testMapperRefName",
+"packagerRefName" : "testPackagerRefName",
+"postProcessorRefName" : "testPostProcessorRefName"
+}
+]
