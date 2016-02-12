@@ -11,12 +11,12 @@
 
 	<context:property-placeholder location="classpath:transform.properties" />
 	
-	<bean id="preProcessor" class="com.covisint.demo.processor.PreProcessor" />
-	<bean id="parseProcessor" class="com.covisint.demo.processor.ParseProcessor" />
-	<bean id="validateProcessor" class="com.covisint.demo.processor.ValidateProcessor" />
-	<bean id="mappingProcessor" class="com.covisint.demo.processor.MappingProcessor" />
-	<bean id="mapDatahubMsg" class="com.covisint.demo.processor.MappingDatahubProcess" />
-	<bean id="postProcessor" class="com.covisint.demo.processor.PostProcessor" />
+	<bean id="preProcessor" class="com.covisint.transform.services.PreProcessor" />
+	<bean id="parseProcessor" class="com.covisint.transform.services.ParseProcessor" />
+	<bean id="validateProcessor" class="com.covisint.transform.services.ValidateProcessor" />
+	<bean id="mappingProcessor" class="com.covisint.transform.services.MappingProcessor" />
+	<bean id="mapDatahubMsg" class="com.covisint.transform.services.MappingDatahubProcess" />
+	<bean id="postProcessor" class="com.covisint.transform.services.PostProcessor" />
 
 	<camel:camelContext xmlns="http://camel.apache.org/schema/spring">
 		<camel:endpoint id="inputFile" uri="file:${src_data_dir}?noop=${preserve_src_file}" />
