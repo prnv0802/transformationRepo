@@ -1,37 +1,60 @@
 package com.covisint.transform.dao.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
 import com.covisint.transform.dao.RouteDefDAO;
-import com.covisint.transform.route.RouteDef;
+import com.covisint.transform.model.RouteDef;
+import com.mongodb.WriteResult;
 
 public class RouteDefDAOImpl implements RouteDefDAO {
 
-	@Autowired
-	protected MongoTemplate mongoTemplate;
+	 private static final String COLLECTION = "RouteDef";
 
-	public void save(RouteDef routeDef) {
+	 @Autowired
+	 MongoTemplate mongoTemplate;
+	 
+	 
 
-		mongoTemplate.save(routeDef);
+	 public MongoTemplate getMongoTemplate() {
+		return mongoTemplate;
 	}
 
-	public void delete(RouteDef routeDef) {
-		mongoTemplate.remove(routeDef);
+	public void setMongoTemplate(MongoTemplate mongoTemplate) {
+		this.mongoTemplate = mongoTemplate;
 	}
 
-	public RouteDef getById(String routeId) {
-		RouteDef routeDef = (RouteDef) mongoTemplate.find(Query.query(Criteria.where("_id").is(routeId)),
-				RouteDef.class);
-		return routeDef;
-	}
+	public void create(RouteDef routeDef) {
+	  if (routeDef != null) {
+	   this.mongoTemplate.insert(routeDef, COLLECTION);
+	  }
+	 }
 
-	public RouteDef getByRefName(String refName, String realm) {
-		RouteDef routeDef = (RouteDef) mongoTemplate
-				.find(Query.query(Criteria.where("refName").is(refName).and("realm").is(realm)), RouteDef.class);
-		return routeDef;
-	}
+	 public RouteDef findById(int id) {
+	  Query query = new Query(Criteria.where("_id").is(id));
+	  return this.mongoTemplate.findOne(query, RouteDef.class, COLLECTION);
+	 }
 
+	 public int deleteById(int id) {
+
+	  Query query = new Query(Criteria.where("_id").is(id));
+	  WriteResult result = this.mongoTemplate.remove(query, RouteDef.class,
+	    COLLECTION);
+	  return result.getN();
+	 }
+
+	 public void update(RouteDef routeDef) {
+	  if (routeDef != null) {
+	   this.mongoTemplate.save(routeDef, COLLECTION);
+	  }
+	 }
+
+	 public List<RouteDef> findAll() {
+	  return (List<RouteDef>) mongoTemplate.findAll(RouteDef.class,
+	    COLLECTION);
+	 }
 }

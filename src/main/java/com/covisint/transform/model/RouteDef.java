@@ -1,12 +1,18 @@
-package com.covisint.transform.route;
+package com.covisint.transform.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-public class RouteDef {
+/**
+ * Route Definition
+ * @author PJ00452307
+ *
+ */
+@Document
+public class RouteDef extends BaseModel{
 	
 	@Id
 	private String id;
-	private String realm;	
 	private String payload;
 	private String refName;
 	private String preProcessorRefName;
@@ -25,14 +31,6 @@ public class RouteDef {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public String getRealm() {
-		return realm;
-	}
-
-	public void setRealm(String realm) {
-		this.realm = realm;
 	}
 
 	public String getPayload() {
@@ -100,24 +98,16 @@ public class RouteDef {
 	}
 
 	@Override
-	public String toString() {
-		return "RouteDef [realm=" + realm + ", payload=" + payload + ", refName=" + refName + ", preProcessorRefName="
-				+ preProcessorRefName + ", parserRefName=" + parserRefName + ", mapperRefName=" + mapperRefName
-				+ ", packagerRefName=" + packagerRefName + ", postProcessorRefName=" + postProcessorRefName
-				+ ", runtimeArgs=" + runtimeArgs + "]";
-	}
-
-	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
+		int result = super.hashCode();
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((mapperRefName == null) ? 0 : mapperRefName.hashCode());
 		result = prime * result + ((packagerRefName == null) ? 0 : packagerRefName.hashCode());
 		result = prime * result + ((parserRefName == null) ? 0 : parserRefName.hashCode());
 		result = prime * result + ((payload == null) ? 0 : payload.hashCode());
 		result = prime * result + ((postProcessorRefName == null) ? 0 : postProcessorRefName.hashCode());
 		result = prime * result + ((preProcessorRefName == null) ? 0 : preProcessorRefName.hashCode());
-		result = prime * result + ((realm == null) ? 0 : realm.hashCode());
 		result = prime * result + ((refName == null) ? 0 : refName.hashCode());
 		result = prime * result + ((runtimeArgs == null) ? 0 : runtimeArgs.hashCode());
 		return result;
@@ -127,11 +117,16 @@ public class RouteDef {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		RouteDef other = (RouteDef) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
 		if (mapperRefName == null) {
 			if (other.mapperRefName != null)
 				return false;
@@ -162,11 +157,6 @@ public class RouteDef {
 				return false;
 		} else if (!preProcessorRefName.equals(other.preProcessorRefName))
 			return false;
-		if (realm == null) {
-			if (other.realm != null)
-				return false;
-		} else if (!realm.equals(other.realm))
-			return false;
 		if (refName == null) {
 			if (other.refName != null)
 				return false;
@@ -179,7 +169,14 @@ public class RouteDef {
 			return false;
 		return true;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return "RouteDef [id=" + id + ", payload=" + payload + ", refName=" + refName + ", preProcessorRefName="
+				+ preProcessorRefName + ", parserRefName=" + parserRefName + ", mapperRefName=" + mapperRefName
+				+ ", packagerRefName=" + packagerRefName + ", postProcessorRefName=" + postProcessorRefName
+				+ ", runtimeArgs=" + runtimeArgs + "]";
+	}
+
+	
 }

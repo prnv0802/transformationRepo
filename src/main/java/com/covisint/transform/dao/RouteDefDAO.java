@@ -1,39 +1,20 @@
 package com.covisint.transform.dao;
 
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import java.util.List;
 
-import com.covisint.transform.route.RouteDef;
+import com.covisint.transform.model.RouteDef;
 
-@EnableMongoRepositories
 public interface RouteDefDAO {
 
-	/**
-	 * Saves the object state in db. create a new document if it does not exist
-	 * @param routeDef
-	 * @return routeDef
-	 */
-	public void save(RouteDef routeDef);
-	/**
-	 * Delete the document from db.
-	 * @param routeDef
-	 * @return routeDef of deleted object
-	 */
-	public void delete(RouteDef routeDef);
-	/**
-	 * Returns route by Id
-	 * @param routeDef
-	 * @return
-	 */
-	public RouteDef getById(String routeId);
-	
-	/**
-	 * Returns the routeDef by refname and realm
-	 * @param refName
-	 * @param realm
-	 * @return
-	 */
-	public RouteDef getByRefName(String refName, String realm);
-	
-	
+	public void create(RouteDef routeDef);
+
+	 public void update(RouteDef routeDef);
+
+	 public int deleteById(int id);
+
+	 public RouteDef findById(int id);
+
+	 public List<RouteDef> findAll();
+
 	
 }

@@ -1,0 +1,40 @@
+realm, deviceId, commandId, messageId, message
+IOT_SOL_QA,ZTQ4OWM5ODAtNGM0OC00YzJlLThlNWItY2NiNTU3MjViYjVh,msg_poc_1, 19f6970d-cf7e-4492-bf09-579a602b4599,{"temp": "24.5C"}
+IOT_SOL_QA,8a1d8cfd-e2e1-4bb1-a466-7ccc815688da,msg_poc_2,2586rd45-cf7e-4492-bf09-2563584ae556,{"humidity": "75%"}
+IOT_SOL_QA,8d9f2e59-2be4-4743-96c8-666b2570f908,msg_poc_3,72355755-020f-49d0-a68d-11bccca15d8f,{"presure": "1.25"}
+IOT_SOL_QA,N2RkZmE1YTktMThlYi00YTQ1LWE4OTAtOTJjY2NlZjVlYzY1, msg_poc_4,8d9f2e59-2be4-4743-96c8-666b2570f908,{"color": "red"}
+IOT_SOL_QA,e489c980-4c48-4c2e-8e5b-ccb55725bb5a,msg_poc_5,e489c980-4c48-4c2e-8e5b-ccb55725bb5a,{"color": "blue"}
+IOT_SOL_QA,e489c980-4c48-4c2e-8e5b-ccb55725bb5a,msg_poc_6,328c6e6f-3567-4d47-b777-3dfbed84f3e7,{"color": "yello"}
+IOT_SOL_QA,328c6e6f-3567-4d47-b777-3dfbed84f3e7,msg_poc_7,7d2e9d14-7dd1-424b-a6aa-f49632853272,{"color": "green"}
+IOT_SOL_QA,7d2e9d14-7dd1-424b-a6aa-f49632853272,msg_poc_8,ad1f7872-e5bd-4957-8af3-8078c5fcfce6,{"color": "teal"}
+IOT_SOL_QA,ad1f7872-e5bd-4957-8af3-8078c5fcfce6,msg_poc_9,1245f5cc-9d95-43ee-943a-1bb4f4ce3b2e,{"color": "black"}
+IOT_SOL_QA,1245f5cc-9d95-43ee-943a-1bb4f4ce3b2e,msg_poc_10,b03f6057-2514-4e52-ad89-37a8b5cf0cf3,{"color": "white"}
+IOT_SOL_QA,b03f6057-2514-4e52-ad89-37a8b5cf0cf3,msg_poc_11,bfd4c869-9ece-4351-bb15-97dcb9c6339e,{"temp": "2.5C"}
+IOT_SOL_QA,bfd4c869-9ece-4351-bb15-97dcb9c6339e,msg_poc_12,f994c775-9090-4298-8b70-2ab36670ed34,{"temp": "20.0C"}
+IOT_SOL_QA,f994c775-9090-4298-8b70-2ab36670ed34,msg_poc_13,01858a14-2164-4803-999a-fedb27bacbe6,{"temp": "30.0C"}
+IOT_SOL_QA,01858a14-2164-4803-999a-fedb27bacbe6,msg_poc_14,61039d40-52d6-4901-8c3c-706bb9ad124c,{"money": "100$"}
+IOT_SOL_QA,2f4de116-6e43-4872-9b06-1e565280657d,msg_poc_15,01858a14-2164-4803-999a-fedb27bacbe6,{"money": "200$"}
+IOT_SOL_QA,068b88d2-39db-4961-bf04-2e76d4f1e330,msg_poc_16,61039d40-52d6-4901-8c3c-706bb9ad124c,{"money": "300$"}
+IOT_SOL_QA,61039d40-52d6-4901-8c3c-706bb9ad124c,msg_poc_17,7bcf722f-4591-4475-8b61-74ce6ad1d40e,{"money": "400$"}
+IOT_SOL_QA,7bcf722f-4591-4475-8b61-74ce6ad1d40e,msg_poc_18,6dd3d7b2-c6c0-41e9-b14d-de8459069b76,{"money": "500$"}
+IOT_SOL_QA,6dd3d7b2-c6c0-41e9-b14d-de8459069b76,msg_poc_19,d8130f29-598d-49ab-9458-90f79c1f485c,{"money": "600$"}
+IOT_SOL_QA,d8130f29-598d-49ab-9458-90f79c1f485c,msg_poc_20,8c4f713d-f3c4-4c62-a9cb-16a9ddb97e1c,{"money": "700$"}
+IOT_SOL_QA,8c4f713d-f3c4-4c62-a9cb-16a9ddb97e1c,msg_poc_21,88eb2b75-8126-47b9-a95a-a3c8eb8bb4ab,{"money": "800$"}
+IOT_SOL_QA,2564eb79-5a2d-47cb-a389-b32a169ca6bb,msg_poc_22,b87c6c76-04db-43bd-9178-efa6535165bc,{"money": "900$"}
+IOT_SOL_QA,b87c6c76-04db-43bd-9178-efa6535165bc,msg_poc_23,19f6970d-cf7e-4492-bf09-579a602b4599,{"locality": "delhi"}
+IOT_SOL_QA,328c6e6f-3567-4d47-b777-3dfbed84f3e7,msg_poc_24,7d2e9d14-7dd1-424b-a6aa-f49632853272,{"locality": "mumbai"}
+IOT_SOL_QA,7d2e9d14-7dd1-424b-a6aa-f49632853272,msg_poc_25,ad1f7872-e5bd-4957-8af3-8078c5fcfce6,{"locality": "banglore"}
+IOT_SOL_QA,ad1f7872-e5bd-4957-8af3-8078c5fcfce6,msg_poc_26,1245f5cc-9d95-43ee-943a-1bb4f4ce3b2e,{"locality": "kolkata"}
+IOT_SOL_QA,e489c980-4c48-4c2e-8e5b-ccb55725bb5a,msg_poc_27,b03f6057-2514-4e52-ad89-37a8b5cf0cf3,{"locality": "new york"}
+IOT_SOL_QA,b03f6057-2514-4e52-ad89-37a8b5cf0cf3,msg_poc_28,bfd4c869-9ece-4351-bb15-97dcb9c6339e,{"locality": "washington"}
+IOT_SOL_QA,bfd4c869-9ece-4351-bb15-97dcb9c6339e,msg_poc_29,f994c775-9090-4298-8b70-2ab36670ed34,{"country": "India"}
+IOT_SOL_QA,f994c775-9090-4298-8b70-2ab36670ed34,msg_poc_30,01858a14-2164-4803-999a-fedb27bacbe6,{"country": "USA"}
+IOT_SOL_QA,61039d40-52d6-4901-8c3c-706bb9ad124c,msg_poc_31,01858a14-2164-4803-999a-fedb27bacbe6,{"country": "France"}
+IOT_SOL_QA,01858a14-2164-4803-999a-fedb27bacbe6,msg_poc_32,61039d40-52d6-4901-8c3c-706bb9ad124c,{"country": "Britain"}
+IOT_SOL_QA,61039d40-52d6-4901-8c3c-706bb9ad124c,msg_poc_33,7bcf722f-4591-4475-8b61-74ce6ad1d40e,{"country": "Germany"}
+IOT_SOL_QA,068b88d2-39db-4961-bf04-2e76d4f1e330,msg_poc_34,6dd3d7b2-c6c0-41e9-b14d-de8459069b76,{"country": "Belgium"}
+IOT_SOL_QA,6dd3d7b2-c6c0-41e9-b14d-de8459069b76,msg_poc_35,d8130f29-598d-49ab-9458-90f79c1f485c,{"country": "China"}
+IOT_SOL_QA,2f4de116-6e43-4872-9b06-1e565280657d,msg_poc_36,8c4f713d-f3c4-4c62-a9cb-16a9ddb97e1c,{"country": "Japan"}
+IOT_SOL_QA,8c4f713d-f3c4-4c62-a9cb-16a9ddb97e1c,msg_poc_37,88eb2b75-8126-47b9-a95a-a3c8eb8bb4ab,{"country": "Korea"}
+IOT_SOL_QA,2564eb79-5a2d-47cb-a389-b32a169ca6bb,msg_poc_38,b87c6c76-04db-43bd-9178-efa6535165bc,{"country": "Denmark"}
+IOT_SOL_QA,b87c6c76-04db-43bd-9178-efa6535165bc,msg_poc_39,19f6970d-cf7e-4492-bf09-579a602b4599,{"country": "Romania"}

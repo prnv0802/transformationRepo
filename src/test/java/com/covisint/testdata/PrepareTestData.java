@@ -4,25 +4,25 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import javax.swing.Spring;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ResourceLoader;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.covisint.transform.dao.RouteDefDAO;
-import com.covisint.transform.dao.impl.RouteDefDAOImpl;
-import com.covisint.transform.route.RouteDef;
+import com.covisint.transform.model.RouteDef;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations =  {"file:src/main/resources/camel-context.xml"})
 public class PrepareTestData {
 
 	@Autowired
-	ResourceLoader resourceLoader;
+	RouteDefDAO routeDefDAO;
 
 	@Test
 	public void testRouteDefInsert() throws JsonParseException, JsonMappingException, IOException {
@@ -34,8 +34,7 @@ public class PrepareTestData {
 				});
 
 		for (RouteDef routeDef : routeDefList) {
-			RouteDefDAO dao = new RouteDefDAOImpl();
-			dao.save(routeDef);
+			routeDefDAO.create(routeDef);
 		}
 
 	}
