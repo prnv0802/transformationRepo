@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations =  {"file:src/main/resources/camel-context.xml"})
+@ContextConfiguration(locations =  {"file:src/main/resources/META-INF/spring/camel-context.xml"})
 public class PrepareTestData {
 
 	@Autowired

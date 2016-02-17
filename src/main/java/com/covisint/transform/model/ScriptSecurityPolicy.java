@@ -1,5 +1,6 @@
 package com.covisint.transform.model;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -21,6 +22,7 @@ import java.util.LinkedHashMap;
 		"permissionsNeeded" })
 public class ScriptSecurityPolicy extends BaseModel implements Serializable {
 
+	@Id
 	@XmlElement(required = true)
 	protected String id;
 

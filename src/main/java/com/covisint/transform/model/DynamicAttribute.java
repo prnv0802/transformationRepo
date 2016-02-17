@@ -4,6 +4,33 @@ public class DynamicAttribute extends BaseModel{
 
 	private String label;
 	private DynamicAttributeType type;
+	private boolean required=false;
+	private Object value;
+	
+	/**
+	 * @return the value
+	 */
+	public Object getValue() {
+		return value;
+	}
+	/**
+	 * @param value the value to set
+	 */
+	public void setValue(Object value) {
+		this.value = value;
+	}
+	/**
+	 * @return the required
+	 */
+	public boolean isRequired() {
+		return required;
+	}
+	/**
+	 * @param required the required to set
+	 */
+	public void setRequired(boolean required) {
+		this.required = required;
+	}
 	/**
 	 * @return the label
 	 */

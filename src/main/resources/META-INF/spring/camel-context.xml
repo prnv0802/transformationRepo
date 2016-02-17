@@ -10,13 +10,13 @@
          http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
          http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.5.xsd">
 
-<context:annotation-config />
+	<context:annotation-config />
 
 	<context:component-scan base-package="com.covisint">
 		<context:exclude-filter type="annotation"
 			expression="org.springframework.context.annotation.Configuration" />
 	</context:component-scan>
-	
+
 	<context:property-placeholder location="classpath:transform.properties" />
 
 	<mongo:db-factory id="mongoDbFactory" host="localhost"
@@ -28,6 +28,18 @@
 
 	<bean id="routeDefDAO" class="com.covisint.transform.dao.impl.RouteDefDAOImpl">
 	</bean>
+	<bean id="correlationDAO" class="com.covisint.transform.dao.impl.CorrelationDAOImpl">
+	</bean>
+	<bean id="scriptDAO" class="com.covisint.transform.dao.impl.ScriptDAOImpl">
+	</bean>
+	<bean id="scriptSecurityPolicyDAO"
+		class="com.covisint.transform.dao.impl.ScriptSecurityPolicyDAOImpl">
+	</bean>
+	<bean id="scriptTypeDAO" class="com.covisint.transform.dao.impl.ScriptTypeDAOImpl">
+	</bean>
+	<bean id="jsRunner" class="com.covisint.transform.util.JSRunner">
+	</bean>
+
 
 
 	<bean id="preProcessor" class="com.covisint.transform.services.PreProcessor" />
@@ -38,29 +50,30 @@
 	<bean id="postProcessor" class="com.covisint.transform.services.PostProcessor" />
 
 	<camel:camelContext xmlns="http://camel.apache.org/schema/spring">
-		<camel:endpoint id="inputFile" uri="file:${src_data_dir}?noop=${preserve_src_file}" />
+		<camel:endpoint id="inputFile"
+			uri="file:${src_data_dir}?noop=${preserve_src_file}" />
 		<camel:route id="tran_route">
-		
+
 			<!-- Read from input file -->
-			<camel:from uri="ref:inputFile"/>
-			
-				<!-- Check for any ValueAdd and if there is any encoded
-					 value for deviceId, decode it to valid value. -->
-				<camel:bean ref="preProcessor" method="readData"/>
-				
-				<!-- Parse each CSV record and create XML -->
-				<camel:bean ref="parseProcessor" method="parseToXML"/>
-				
-				<!-- Validate XML against given XSD -->
-				<camel:bean ref="validateProcessor" method="validate"/>
-				
-				<!-- Convert XML to RawMessage Object -->
-				<camel:bean ref="mappingProcessor" method="convertToRawMessage"/>
-				
-				<!-- Convert RawMessage to Datahub message. Make http call
-					to Device service and get eventTemplateId, commandTemplateId and other properties. -->
-				<camel:bean ref="mapDatahubMsg" method="mapToDatahub"/>
-				
+			<camel:from uri="ref:inputFile" />
+
+			<!-- Check for any ValueAdd and if there is any encoded value for deviceId, 
+				decode it to valid value. -->
+			<camel:bean ref="preProcessor" method="readData" />
+
+			<!-- Parse each CSV record and create XML -->
+			<camel:bean ref="parseProcessor" method="parseToXML" />
+
+			<!-- Validate XML against given XSD -->
+			<camel:bean ref="validateProcessor" method="validate" />
+
+			<!-- Convert XML to RawMessage Object -->
+			<camel:bean ref="mappingProcessor" method="convertToRawMessage" />
+
+			<!-- Convert RawMessage to Datahub message. Make http call to Device service 
+				and get eventTemplateId, commandTemplateId and other properties. -->
+			<camel:bean ref="mapDatahubMsg" method="mapToDatahub" />
+
 			<!-- Send to kafka topic TEST -->
 			<camel:to uri="bean:postProcessor" />
 		</camel:route>

@@ -8,7 +8,9 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -24,7 +26,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 		"scriptTypeId", "scriptSecurityPolicyId", "runAsId", "runAsDefaultDataDomain" })
 public class Script extends BaseModel implements Serializable {
 
-	@XmlElement(required = true)
+	@Id
 	protected String id;
 
 	@XmlElement(required = true)
@@ -34,17 +36,14 @@ public class Script extends BaseModel implements Serializable {
 
 	protected String language;
 
-	@Transient
 	@XmlElement(required = true)
 	protected ScriptType type;
 
 	@XmlElement(required = true)
 	protected String functionType;
 
-	@Transient
 	protected LinkedHashMap<String, Object> inputs;
 
-	@Transient
 	protected Object result;
 
 	protected boolean active;
@@ -55,8 +54,8 @@ public class Script extends BaseModel implements Serializable {
 
 	protected String scriptTracer;
 
-	@Transient
 	@XmlElement(required = true)
+	@DBRef
 	protected ScriptSecurityPolicy scriptSecurityPolicy;
 
 	protected String scriptTypeId;
@@ -418,4 +417,19 @@ public class Script extends BaseModel implements Serializable {
 		result1 = 31 * result1 + (runAsDefaultDataDomain != null ? runAsDefaultDataDomain.hashCode() : 0);
 		return result1;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Script [id=" + id + ", script=" + script + ", compensateScript=" + compensateScript + ", language="
+				+ language + ", type=" + type + ", functionType=" + functionType + ", inputs=" + inputs + ", result="
+				+ result + ", active=" + active + ", blacklisted=" + blacklisted + ", blacklistReason="
+				+ blacklistReason + ", scriptTracer=" + scriptTracer + ", scriptSecurityPolicy=" + scriptSecurityPolicy
+				+ ", scriptTypeId=" + scriptTypeId + ", scriptSecurityPolicyId=" + scriptSecurityPolicyId + ", runAsId="
+				+ runAsId + ", runAsDefaultDataDomain=" + runAsDefaultDataDomain + "]";
+	}
+	
+	
 }

@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -20,6 +21,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @XmlType(name = "ScriptType", propOrder = { "id", "inputs", "outputs", "scriptContextObjects" })
 public class ScriptType extends BaseModel implements Serializable {
 
+	@Id
 	protected String id;
 
 	protected DynamicAttributeSet inputs;

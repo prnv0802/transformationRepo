@@ -1,5 +1,6 @@
 package com.covisint.transform.util;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -22,8 +23,12 @@ import org.mozilla.javascript.WrappedException;
 import org.mozilla.javascript.Wrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.covisint.transform.model.DynamicAttribute;
 import com.covisint.transform.model.Script;
+import com.covisint.transform.model.ScriptContextObject;
 import com.covisint.transform.model.ScriptSecurityPolicy;
 
 /**
@@ -63,7 +68,10 @@ public class JSRunner {
 		Scriptable scope = cx.initStandardObjects();
 		Script returnScript = null;
 		try {
-			cx.setClassShutter(new CovisintClassShutter(script.getScriptSecurityPolicy(), blPackages));
+			if (blPackages != null) {
+				cx.setClassShutter(new CovisintClassShutter(script.getScriptSecurityPolicy(), blPackages));
+			}
+
 		} catch (SecurityException e) {
 			// will get this security exception when a script calls a script.
 			// Ignore exception, stick with original shutter
@@ -156,9 +164,23 @@ public class JSRunner {
 	}
 
 	private void prepareContext(Script script, Scriptable scope) throws ScriptException {
-		// this would prepare the context based on contextVars and
-		// DynamicAttributes if we want to add that capability
 
+		if (script.getType() != null) {
+
+			// read context variables and dynamic attributes
+
+			addToContext(scope, "builder", Context.javaToJS(new java.lang.StringBuilder("Log:"), scope));
+			addToContext(scope, "lineSeperator", "<br/>");
+
+			convertInputsToScope(scope, script.getInputs());
+
+		} else {
+
+			addToContext(scope, "builder", Context.javaToJS(new java.lang.StringBuilder("Log:"), scope));
+			addToContext(scope, "lineSeperator", "<br/>");
+
+			convertInputsToScope(scope, script.getInputs());
+		}
 	}
 
 	private boolean checkPermissions(ScriptSecurityPolicy scriptSecurityPolicy) {
@@ -192,7 +214,6 @@ public class JSRunner {
 		} else {
 			script.setResult(result);
 		}
-
 
 		Object builder = scope.get("builder", scope);
 		if (builder != null) {
@@ -241,7 +262,7 @@ public class JSRunner {
 
 	private Map<String, Object> objectToMap(NativeObject obj) {
 
-		HashMap<String, Object> map = new HashMap<>();
+		HashMap<String, Object> map = new HashMap<String, Object>();
 
 		for (Object id : obj.getIds()) {
 			String key;

@@ -1,24 +1,32 @@
 package com.covisint.transform.model;
 
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DynamicAttributeSet {
 
-	private Set<DynamicAttribute> attributes;
+	private Map<String, DynamicAttribute> attributes;
 
 	/**
 	 * @return the attributes
 	 */
-	public Set<DynamicAttribute> getAttributes() {
+	public Map<String, DynamicAttribute> getAttributes() {
+		if(attributes == null)
+		{
+			attributes = new HashMap<String, DynamicAttribute>();
+		}
 		return attributes;
 	}
 
 	/**
 	 * @param attributes the attributes to set
 	 */
-	public void setAttributes(Set<DynamicAttribute> attributes) {
+	public void setAttributes(Map<String, DynamicAttribute> attributes) {
 		this.attributes = attributes;
 	}
+	
+	
+
 	
 	
 }

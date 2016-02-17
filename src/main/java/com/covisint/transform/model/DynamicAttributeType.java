@@ -8,11 +8,11 @@ import javax.xml.bind.annotation.XmlType;
  * @author PJ00452307 - Pranav Jha
  *
  */
-@XmlType(name = "CorrelationType")
+@XmlType(name = "DynamicAttributeType")
 @XmlEnum
 public enum DynamicAttributeType {
 
-	OBJECT;
+	String, Text, Object;
 	
 	 /**
      * Get the corresponding String value

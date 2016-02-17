@@ -1,5 +1,7 @@
 package com.covisint.transform.util;
 
+import java.util.Map;
+
 import org.apache.camel.Consumer;
 import org.apache.camel.Processor;
 import org.apache.camel.Producer;
@@ -7,7 +9,8 @@ import org.apache.camel.impl.DefaultPollingEndpoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Map;
+import com.covisint.transform.dao.CorrelationDAO;
+import com.covisint.transform.dao.ScriptDAO;
 
 /**
  * Camel endpoint for Script
@@ -17,11 +20,9 @@ public class PreProcessorScriptEndpoint extends DefaultPollingEndpoint {
 
     private static final Logger LOG = LoggerFactory.getLogger(PreProcessorScriptEndpoint.class);
     private String scriptName;
-    private String domain;
+    private String realm;
     private ScriptDAO scriptDAO;
     private CorrelationDAO correlationDAO;
-    private UserProfileDAO userProfileDAO;
-    private TenancyManagerService tenancyManagerService;
 
     private Map<String, Object> parameters;
 
@@ -30,13 +31,13 @@ public class PreProcessorScriptEndpoint extends DefaultPollingEndpoint {
      * @param endpointUri endpoint uri
      * @param component component
      */
-    public PreProcessorScriptEndpoint(String endpointUri, B2bmbScriptComponent component) {
+    public PreProcessorScriptEndpoint(String endpointUri, PreProcessorScriptComponent component) {
         super(endpointUri, component);
     }
 
     @Override
     public Consumer createConsumer(Processor processor) throws Exception {
-        B2bmbScriptConsumer consumer = new B2bmbScriptConsumer(this, processor);
+        PreProcessorScriptConsumer consumer = new PreProcessorScriptConsumer(this, processor);
 
         // ScheduledPollConsumer default delay is 500 millis, override with a new default value.
         // End user can override this value by providing a consumer.delay parameter
@@ -47,7 +48,7 @@ public class PreProcessorScriptEndpoint extends DefaultPollingEndpoint {
 
     @Override
     public Producer createProducer() throws Exception {
-        return new B2bmbScriptProducer(this);
+        return new PreProcessorScriptProducer(this);
     }
 
     @Override
@@ -61,22 +62,20 @@ public class PreProcessorScriptEndpoint extends DefaultPollingEndpoint {
     }
 
     /**
-     * Get the data domain
-     * @return domain data domain
-     */
-    public String getDomain() {
-        return domain;
-    }
+	 * @return the realm
+	 */
+	public String getRealm() {
+		return realm;
+	}
 
-    /**
-     * Set the data domain
-     * @param domain data domain
-     */
-    public void setDomain(String domain) {
-        this.domain = domain;
-    }
+	/**
+	 * @param realm the realm to set
+	 */
+	public void setRealm(String realm) {
+		this.realm = realm;
+	}
 
-    /**
+	/**
      * Get the script name
      * @return script ref name
      */
@@ -124,25 +123,6 @@ public class PreProcessorScriptEndpoint extends DefaultPollingEndpoint {
         this.correlationDAO = correlationDAO;
     }
 
-
-    /**
-     * gets the user profile dao
-     * @return the user profile dao
-     */
-    public UserProfileDAO getUserProfileDAO() {
-
-        return userProfileDAO;
-    }
-
-    /**
-     * sets the user profile dao
-     * @param userProfileDAO the dao implementation to use
-     */
-    public void setUserProfileDAO(UserProfileDAO userProfileDAO) {
-
-        this.userProfileDAO = userProfileDAO;
-    }
-
     /**
      * Get the parameters from the endpoint.  These are used to populate matching script input parameters
      * @return parameters
@@ -159,21 +139,4 @@ public class PreProcessorScriptEndpoint extends DefaultPollingEndpoint {
         this.parameters = parameters;
     }
 
-    /**
-     * gets the tanancy manager service impl
-     * @return the service
-     */
-    public TenancyManagerService getTenancyManagerService() {
-
-        return tenancyManagerService;
-    }
-
-    /**
-     * sets teh service implementation
-     * @param tenancyManagerService the implementation
-     */
-    public void setTenancyManagerService(TenancyManagerService tenancyManagerService) {
-
-        this.tenancyManagerService = tenancyManagerService;
-    }
 }

@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.index.CompoundIndexes;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -32,6 +33,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
         "tags"
 })
 public class Correlation<K,V> extends BaseModel {
+	
+	@Id
     @XmlElement(required = true)
     protected String id;
     @XmlElement(required = true)
