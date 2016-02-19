@@ -20,7 +20,7 @@ import com.covisint.transform.model.Script;
 /**
  * Camel producer for Scripts
  *
- * @author aaldredge
+ * @author PJ00452307
  */
 public class PreProcessorScriptProducer extends DefaultProducer {
 
@@ -205,7 +205,7 @@ public class PreProcessorScriptProducer extends DefaultProducer {
 
 				script.setBlacklisted(true);
 				script.setBlacklistReason(msg);
-				exceptionOccurred = true;
+				exceptionOccurred = true;                                                                                                                                                                                                                                          
 				throw se;
 			} finally {
 				if (exceptionOccurred) {

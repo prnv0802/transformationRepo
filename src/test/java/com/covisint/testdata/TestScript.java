@@ -20,6 +20,6 @@ public class TestScript {
 	public void fetchScript()
 	{
 		Script script = scriptDAO.getByRefName("fordPreProcessor", "iot-sol-ford");
-		System.out.println("Script "+script);
+		System.out.println("Script Output "+script.getResult());
 	}
 }

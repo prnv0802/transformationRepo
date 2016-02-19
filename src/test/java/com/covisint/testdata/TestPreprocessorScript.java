@@ -124,15 +124,9 @@ public class TestPreprocessorScript {
             script.setType(scriptType);
             script.setScriptTypeId(scriptType.getId());
 
-
-          /*  script.setScript("// Get applicable PreProcessor Configs\n" +
-                    "// If not runs the default config\n" +
-                    "function runFordPreProcessor() {\n" +
-                    "    System.out.println('Run Ford Specific PreProcessor');\n" +
-                    "}\n" +
-                    "\n");*/
             script.getInputs().put("x", 10);
             script.setScript("var z = x + x; z;");
+            
             script.setRefName(refName);
             script.setFunctionType("fordPreProcessor");
             script.setActive(true);

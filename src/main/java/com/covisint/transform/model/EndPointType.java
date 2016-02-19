@@ -4,9 +4,7 @@ package com.covisint.transform.model;
  * @author PJ00452307 - Pranav Jha
  */
 public enum EndPointType {
-    HTTP_REST,
-    JSON,
-    XML, CSV;
+    HTTP_REST;
 
 
     public String value() {

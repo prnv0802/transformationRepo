@@ -52,7 +52,7 @@ public class PreProcessorScriptConsumer extends ScheduledPollConsumer {
             throw new IllegalArgumentException("scriptDAO is not being initialized  ");
         }
         CorrelationDAO correlationDAO = getEndpoint().getCorrelationDAO();
-        if (scriptDAO == null) {
+        if (correlationDAO == null) {
             throw new IllegalArgumentException("correlationDAO is not being initialized  ");
         }
 
